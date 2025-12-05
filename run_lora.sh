@@ -12,7 +12,7 @@ fi
 
 # 默认设置，可根据显存调整
 # 如果显存不够 (如 < 24GB)，添加 --use_4bit 参数
-BATCH_SIZE=2  
+BATCH_SIZE=2
 GRAD_ACCUM=1
 MAX_LEN=1024
 
@@ -64,7 +64,7 @@ echo "Data loaded to temp_dir"
 
 # 2. 运行 Python 脚本
 # 如果显存不足，请在最后添加 --use_4bit
-python train_glm4_lora.py \
+python train_lora.py \
     --dataset $DATASET \
     --num_labels $NUM_LABELS \
     --K_number $K_NUMBER \
@@ -73,7 +73,8 @@ python train_glm4_lora.py \
     --grad_accum_steps $GRAD_ACCUM \
     --max_len $MAX_LEN \
     --epochs 3 \
-    --lr 1e-4
+    --lr 1e-4 \
+    --use_4bit
 
 # 3. 清理
 # rm -rf temp_dir
